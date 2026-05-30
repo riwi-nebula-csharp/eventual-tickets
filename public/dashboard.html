@@ -73,18 +73,6 @@ tailwind.config = {
             <span class="material-symbols-outlined">calendar_month</span>
             <span class="font-body-md">Funciones</span>
         </button>
-        <button class="nav-item w-full flex items-center gap-4 px-4 py-3 hover:text-on-surface hover:bg-surface-container-highest transition-colors duration-200 rounded-lg text-on-surface-variant" onclick="switchTab('entradas')">
-            <span class="material-symbols-outlined">confirmation_number</span>
-            <span class="font-body-md">Entradas</span>
-        </button>
-        <button class="nav-item w-full flex items-center gap-4 px-4 py-3 hover:text-on-surface hover:bg-surface-container-highest transition-colors duration-200 rounded-lg text-on-surface-variant" onclick="switchTab('clientes')">
-            <span class="material-symbols-outlined">group</span>
-            <span class="font-body-md">Clientes</span>
-        </button>
-        <button class="nav-item w-full flex items-center gap-4 px-4 py-3 hover:text-on-surface hover:bg-surface-container-highest transition-colors duration-200 rounded-lg text-on-surface-variant" onclick="switchTab('ventas')">
-            <span class="material-symbols-outlined">payments</span>
-            <span class="font-body-md">Ventas</span>
-        </button>
         <button class="nav-item w-full flex items-center gap-4 px-4 py-3 hover:text-on-surface hover:bg-surface-container-highest transition-colors duration-200 rounded-lg text-on-surface-variant" onclick="switchTab('historial')">
             <span class="material-symbols-outlined">history</span>
             <span class="font-body-md">Historial</span>
@@ -124,15 +112,13 @@ tailwind.config = {
                 <div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container overflow-hidden" id="user-avatar-wrap">
                     <span class="material-symbols-outlined">person</span>
                 </div>
-                <button class="text-on-surface-variant hover:text-on-surface transition-colors">
-                    <span class="material-symbols-outlined">notifications</span>
-                </button>
             </div>
         </div>
     </header>
 
     <!-- Dynamic Content Canvas -->
     <div class="flex-1 overflow-y-auto p-gutter bg-surface-dim flex flex-col" id="content-canvas">
+
         <!-- SPA View: Nueva Venta -->
         <div class="animate-in fade-in duration-500 flex-1" id="view-nueva-venta">
             <!-- Stepper -->
@@ -154,76 +140,42 @@ tailwind.config = {
                     </div>
                 </div>
             </div>
+
             <!-- Main Layout -->
             <div class="grid grid-cols-12 gap-gutter">
+
                 <!-- Left: Function List -->
                 <div class="col-span-3 flex flex-col gap-4">
                     <div class="relative">
                         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-                        <input class="w-full bg-surface-container border-outline-variant rounded-lg pl-10 pr-4 py-3 focus:ring-tertiary focus:border-tertiary text-sm" placeholder="Buscar función..." type="text">
+                        <input id="search-performance" class="w-full bg-surface-container border border-outline-variant rounded-lg pl-10 pr-4 py-3 focus:ring-tertiary focus:border-tertiary text-sm" placeholder="Buscar función..." type="text">
                     </div>
-                    <div class="flex-1 space-y-3">
-                        <div class="p-4 rounded-xl border-2 border-tertiary bg-tertiary/5 cursor-pointer">
-                            <h4 class="font-bold text-tertiary">La Bella y la Bestia</h4>
-                            <p class="text-xs text-on-surface-variant mt-1">24 May 2024 • 20:00</p>
-                            <p class="text-xs text-on-surface-variant">Sala Principal</p>
-                        </div>
-                        <div class="p-4 rounded-xl border border-outline-variant bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
-                            <h4 class="font-bold text-on-surface group-hover:text-tertiary transition-colors">El Fantasma de la Ópera</h4>
-                            <p class="text-xs text-on-surface-variant mt-1">25 May 2024 • 19:00</p>
-                        </div>
+                    <div class="flex-1 space-y-3 overflow-y-auto max-h-[60vh]" id="performance-list">
+                        <!-- Llenado por main.js -->
                     </div>
                 </div>
+
                 <!-- Center: Seat Map -->
                 <div class="col-span-6 bg-surface-container-high rounded-2xl p-8 border border-outline-variant flex flex-col items-center">
-                    <div class="text-center mb-6">
-                        <h3 class="font-headline-md text-xl uppercase tracking-widest text-on-surface">La Bella y la Bestia</h3>
-                        <p class="text-on-surface-variant text-sm">Sala Principal • Mapa de Asientos Interactivo</p>
+                    <div class="text-center mb-2">
+                        <h3 class="font-headline-md text-xl uppercase tracking-widest text-on-surface" id="seat-map-title">Selecciona una función</h3>
+                        <p class="text-on-surface-variant text-sm" id="seat-map-subtitle">Elige una función de la lista para ver los asientos</p>
+                        <p class="text-xs text-tertiary mt-1 font-bold" id="seat-availability-info"></p>
                     </div>
-                    <div class="stage-curve flex items-center justify-center">
+                    <div class="stage-curve flex items-center justify-center mt-4">
                         <span class="text-[10px] text-tertiary/60 tracking-[1em] font-bold uppercase mt-2">ESCENARIO</span>
                     </div>
-                    <div class="w-full max-w-md mx-auto space-y-4" id="seat-map-container">
-                        <div class="flex flex-col gap-2">
-                            <div class="flex justify-center gap-2 seat-row" data-price="65" data-row="A">
-                                <div class="seat available cursor-pointer" data-id="A-1"></div><div class="seat available cursor-pointer" data-id="A-2"></div><div class="seat available cursor-pointer" data-id="A-3"></div><div class="seat available cursor-pointer" data-id="A-4"></div><div class="seat available cursor-pointer" data-id="A-5"></div><div class="seat available cursor-pointer" data-id="A-6"></div><div class="seat available cursor-pointer" data-id="A-7"></div><div class="seat available cursor-pointer" data-id="A-8"></div><div class="seat available cursor-pointer" data-id="A-9"></div><div class="seat available cursor-pointer" data-id="A-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="65" data-row="B">
-                                <div class="seat available cursor-pointer" data-id="B-1"></div><div class="seat available cursor-pointer" data-id="B-2"></div><div class="seat available cursor-pointer" data-id="B-3"></div><div class="seat available cursor-pointer" data-id="B-4"></div><div class="seat available cursor-pointer" data-id="B-5"></div><div class="seat available cursor-pointer" data-id="B-6"></div><div class="seat available cursor-pointer" data-id="B-7"></div><div class="seat available cursor-pointer" data-id="B-8"></div><div class="seat available cursor-pointer" data-id="B-9"></div><div class="seat available cursor-pointer" data-id="B-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="65" data-row="C">
-                                <div class="seat available cursor-pointer" data-id="C-1"></div><div class="seat available cursor-pointer" data-id="C-2"></div><div class="seat available cursor-pointer" data-id="C-3"></div><div class="seat available cursor-pointer" data-id="C-4"></div><div class="seat available cursor-pointer" data-id="C-5"></div><div class="seat available cursor-pointer" data-id="C-6"></div><div class="seat available cursor-pointer" data-id="C-7"></div><div class="seat available cursor-pointer" data-id="C-8"></div><div class="seat available cursor-pointer" data-id="C-9"></div><div class="seat available cursor-pointer" data-id="C-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="55" data-row="D">
-                                <div class="seat available cursor-pointer" data-id="D-1"></div><div class="seat available cursor-pointer" data-id="D-2"></div><div class="seat available cursor-pointer" data-id="D-3"></div><div class="seat available cursor-pointer" data-id="D-4"></div><div class="seat available cursor-pointer" data-id="D-5"></div><div class="seat available cursor-pointer" data-id="D-6"></div><div class="seat available cursor-pointer" data-id="D-7"></div><div class="seat available cursor-pointer" data-id="D-8"></div><div class="seat available cursor-pointer" data-id="D-9"></div><div class="seat available cursor-pointer" data-id="D-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="55" data-row="E">
-                                <div class="seat available cursor-pointer" data-id="E-1"></div><div class="seat available cursor-pointer" data-id="E-2"></div><div class="seat available cursor-pointer" data-id="E-3"></div><div class="seat available cursor-pointer" data-id="E-4"></div><div class="seat available cursor-pointer" data-id="E-5"></div><div class="seat available cursor-pointer" data-id="E-6"></div><div class="seat available cursor-pointer" data-id="E-7"></div><div class="seat available cursor-pointer" data-id="E-8"></div><div class="seat available cursor-pointer" data-id="E-9"></div><div class="seat available cursor-pointer" data-id="E-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="55" data-row="F">
-                                <div class="seat available cursor-pointer" data-id="F-1"></div><div class="seat available cursor-pointer" data-id="F-2"></div><div class="seat available cursor-pointer" data-id="F-3"></div><div class="seat available cursor-pointer" data-id="F-4"></div><div class="seat available cursor-pointer" data-id="F-5"></div><div class="seat available cursor-pointer" data-id="F-6"></div><div class="seat available cursor-pointer" data-id="F-7"></div><div class="seat available cursor-pointer" data-id="F-8"></div><div class="seat available cursor-pointer" data-id="F-9"></div><div class="seat available cursor-pointer" data-id="F-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="45" data-row="G">
-                                <div class="seat available cursor-pointer" data-id="G-1"></div><div class="seat available cursor-pointer" data-id="G-2"></div><div class="seat available cursor-pointer" data-id="G-3"></div><div class="seat available cursor-pointer" data-id="G-4"></div><div class="seat available cursor-pointer" data-id="G-5"></div><div class="seat available cursor-pointer" data-id="G-6"></div><div class="seat available cursor-pointer" data-id="G-7"></div><div class="seat available cursor-pointer" data-id="G-8"></div><div class="seat available cursor-pointer" data-id="G-9"></div><div class="seat available cursor-pointer" data-id="G-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="45" data-row="H">
-                                <div class="seat available cursor-pointer" data-id="H-1"></div><div class="seat available cursor-pointer" data-id="H-2"></div><div class="seat available cursor-pointer" data-id="H-3"></div><div class="seat available cursor-pointer" data-id="H-4"></div><div class="seat available cursor-pointer" data-id="H-5"></div><div class="seat available cursor-pointer" data-id="H-6"></div><div class="seat available cursor-pointer" data-id="H-7"></div><div class="seat available cursor-pointer" data-id="H-8"></div><div class="seat available cursor-pointer" data-id="H-9"></div><div class="seat available cursor-pointer" data-id="H-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="45" data-row="I">
-                                <div class="seat available cursor-pointer" data-id="I-1"></div><div class="seat available cursor-pointer" data-id="I-2"></div><div class="seat available cursor-pointer" data-id="I-3"></div><div class="seat available cursor-pointer" data-id="I-4"></div><div class="seat available cursor-pointer" data-id="I-5"></div><div class="seat available cursor-pointer" data-id="I-6"></div><div class="seat available cursor-pointer" data-id="I-7"></div><div class="seat available cursor-pointer" data-id="I-8"></div><div class="seat available cursor-pointer" data-id="I-9"></div><div class="seat available cursor-pointer" data-id="I-10"></div>
-                            </div>
-                            <div class="flex justify-center gap-2 seat-row" data-price="45" data-row="J">
-                                <div class="seat available cursor-pointer" data-id="J-1"></div><div class="seat available cursor-pointer" data-id="J-2"></div><div class="seat available cursor-pointer" data-id="J-3"></div><div class="seat available cursor-pointer" data-id="J-4"></div><div class="seat available cursor-pointer" data-id="J-5"></div><div class="seat available cursor-pointer" data-id="J-6"></div><div class="seat available cursor-pointer" data-id="J-7"></div><div class="seat available cursor-pointer" data-id="J-8"></div><div class="seat available cursor-pointer" data-id="J-9"></div><div class="seat available cursor-pointer" data-id="J-10"></div>
-                            </div>
-                        </div>
+                    <div class="w-full max-w-lg mx-auto space-y-4 overflow-y-auto max-h-[45vh]" id="seat-map-container">
+                        <p class="text-center text-on-surface-variant py-8 text-sm italic">Selecciona una función para ver el mapa de asientos.</p>
                     </div>
                     <!-- Legend -->
-                    <div class="flex flex-wrap justify-center gap-8 mt-10 text-xs font-medium border-t border-outline-variant pt-6 w-full">
+                    <div class="flex flex-wrap justify-center gap-8 mt-6 text-xs font-medium border-t border-outline-variant pt-6 w-full">
                         <div class="flex items-center gap-2"><div class="seat available w-4 h-4 rounded-sm"></div><span class="text-on-surface-variant uppercase tracking-tighter">Disponible</span></div>
                         <div class="flex items-center gap-2"><div class="seat selected w-4 h-4 rounded-sm"></div><span class="text-on-surface-variant uppercase tracking-tighter">Seleccionado</span></div>
                         <div class="flex items-center gap-2"><div class="seat unavailable w-4 h-4 rounded-sm"></div><span class="text-on-surface-variant uppercase tracking-tighter">No Disponible</span></div>
                     </div>
                 </div>
+
                 <!-- Right: Summary -->
                 <div class="col-span-3 flex flex-col gap-gutter">
                     <div class="bg-surface-container-high rounded-2xl border border-outline-variant overflow-hidden flex flex-col min-h-[400px]">
@@ -232,15 +184,15 @@ tailwind.config = {
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
                             <div class="mb-6">
-                                <h4 class="font-bold text-sm text-tertiary">La Bella y la Bestia</h4>
-                                <p class="text-xs text-on-surface-variant">24 May 2024 • 20:00 • Sala Principal</p>
+                                <h4 class="font-bold text-sm text-tertiary" id="summary-play-name">—</h4>
+                                <p class="text-xs text-on-surface-variant" id="summary-play-date">Selecciona una función</p>
                             </div>
                             <div class="flex-1 space-y-4 overflow-y-auto pr-1" id="summary-items">
                                 <p class="text-sm text-on-surface-variant italic py-4 text-center">No hay asientos seleccionados</p>
                             </div>
                             <div class="pt-4 mt-4 border-t border-dashed border-outline-variant flex justify-between items-center">
                                 <span class="text-lg font-bold text-on-surface uppercase tracking-widest">Total</span>
-                                <span class="text-2xl font-bold text-tertiary" id="total-price">$0.00</span>
+                                <span class="text-2xl font-bold text-tertiary" id="total-price">$0</span>
                             </div>
                         </div>
                         <div class="p-6 pt-0">
@@ -250,10 +202,11 @@ tailwind.config = {
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
-        <!-- Generic placeholder for other views -->
+        <!-- Placeholder para otras vistas -->
         <div class="hidden flex-1 flex flex-col items-center justify-center gap-4 text-center" id="view-placeholder">
             <span class="material-symbols-outlined text-5xl text-on-surface-variant" id="placeholder-icon">construction</span>
             <h3 class="font-headline-md text-xl text-on-surface" id="placeholder-title">Sección en construcción</h3>
@@ -263,12 +216,10 @@ tailwind.config = {
 </main>
 
 <script>
-    let selectedSeats = [];
-
     function switchTab(viewId) {
-        const placeholder  = document.getElementById('view-placeholder');
-        const activeView   = document.getElementById('view-nueva-venta');
-        const title        = document.getElementById('page-title');
+        const placeholder = document.getElementById('view-placeholder');
+        const activeView  = document.getElementById('view-nueva-venta');
+        const title       = document.getElementById('page-title');
 
         document.querySelectorAll('.nav-item').forEach(item => {
             item.classList.remove('bg-tertiary-container','text-on-tertiary-container','font-bold');
@@ -297,61 +248,8 @@ tailwind.config = {
             title.innerText = labels[viewId].title;
         }
     }
-
-    // Seat interaction
-    document.querySelectorAll('.seat.cursor-pointer').forEach(seat => {
-        seat.addEventListener('click', function() {
-            const seatId      = this.dataset.id;
-            const rowElement  = this.closest('.seat-row');
-            const row         = rowElement.dataset.row;
-            const price       = parseFloat(rowElement.dataset.price);
-
-            if (this.classList.contains('selected')) {
-                this.classList.remove('selected');
-                this.classList.add('available');
-                selectedSeats = selectedSeats.filter(s => s.id !== seatId);
-            } else {
-                this.classList.add('selected');
-                selectedSeats.push({ id: seatId, row, price });
-            }
-            updateSummary();
-        });
-    });
-
-    function updateSummary() {
-        const container    = document.getElementById('summary-items');
-        const totalElement = document.getElementById('total-price');
-        const checkoutBtn  = document.getElementById('btn-checkout');
-
-        if (selectedSeats.length === 0) {
-            container.innerHTML = '<p class="text-sm text-on-surface-variant italic py-4 text-center">No hay asientos seleccionados</p>';
-            totalElement.innerText = '$0.00';
-            checkoutBtn.disabled = true;
-            checkoutBtn.className = 'w-full bg-outline-variant text-on-surface-variant py-4 rounded-xl font-bold uppercase tracking-widest transition-all cursor-not-allowed';
-            return;
-        }
-
-        let html = '<div class="space-y-4">';
-        let total = 0;
-        selectedSeats.forEach(seat => {
-            total += seat.price;
-            html += `
-                <div class="flex justify-between items-center animate-in fade-in slide-in-from-right-2">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-tertiary text-sm">chair</span>
-                        <p class="text-sm font-bold text-on-surface">Asiento ${seat.id}</p>
-                    </div>
-                    <p class="font-bold text-on-surface text-sm">$${seat.price.toFixed(2)}</p>
-                </div>`;
-        });
-        html += '</div>';
-
-        container.innerHTML = html;
-        totalElement.innerText = `$${total.toFixed(2)}`;
-        checkoutBtn.disabled = false;
-        checkoutBtn.className = 'w-full bg-tertiary text-on-tertiary py-4 rounded-xl font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-tertiary/20';
-    }
 </script>
 
 <script src="../js/dashboard.js"></script>
+<script src="../js/main.js"></script>
 </body></html>

@@ -160,6 +160,8 @@ async function handleLogin(e) {
 
     if (data.success) {
       const user = data.data.user;
+      const tokenPayload = decodeJwtPayload(data.data.token);
+      user.permissions = tokenPayload?.permissions || [];
 
       // Verificar que tiene acceso al portal de tickets
       if (!hasTicketsAccess(user)) {
