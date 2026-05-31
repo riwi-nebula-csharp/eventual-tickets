@@ -3,216 +3,198 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Gran Teatro | Punto de Venta</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-secondary-container": "#bfb2da",
-                      "surface-container-high": "#2b292f",
-                      "inverse-surface": "#e6e0e9",
-                      "primary-fixed-dim": "#cfbcff",
-                      "on-tertiary": "#3e2e00",
-                      "inverse-on-surface": "#322f35",
-                      "error": "#ffb4ab",
-                      "on-tertiary-container": "#503d00",
-                      "on-background": "#e6e0e9",
-                      "primary": "#cfbcff",
-                      "surface-container-low": "#1d1b20",
-                      "surface-dim": "#141218",
-                      "outline-variant": "#494551",
-                      "tertiary": "#e7c365", // Dorado (Approximation of #D4AF37)
-                      "surface": "#141218",
-                      "surface-bright": "#3b383e",
-                      "inverse-primary": "#6750a4",
-                      "background": "#141218", // #1A1A1F maps closest to surface/background
-                      "on-secondary": "#342b4b",
-                      "primary-fixed": "#e9ddff",
-                      "on-surface": "#e6e0e9",
-                      "on-primary": "#381e72",
-                      "surface-container-highest": "#36343a",
-                      "secondary-container": "#4d4465",
-                      "primary-container": "#6750a4",
-                      "secondary-fixed": "#e9ddff",
-                      "secondary-fixed-dim": "#cdc0e9",
-                      "surface-variant": "#36343a",
-                      "on-primary-container": "#e0d2ff",
-                      "on-surface-variant": "#cbc4d2",
-                      "tertiary-fixed-dim": "#e7c365",
-                      "tertiary-container": "#c9a74d",
-                      "on-error": "#690005",
-                      "on-tertiary-fixed-variant": "#594400",
-                      "on-primary-fixed": "#22005d",
-                      "secondary": "#cdc0e9",
-                      "surface-tint": "#cfbcff",
-                      "on-error-container": "#ffdad6",
-                      "tertiary-fixed": "#ffdf93", // Soft Cream (Approximation of #F7E7B6)
-                      "error-container": "#93000a",
-                      "on-primary-fixed-variant": "#4f378a",
-                      "on-secondary-fixed-variant": "#4b4263",
-                      "on-tertiary-fixed": "#241a00",
-                      "outline": "#948e9c",
-                      "surface-container": "#211f24",
-                      "on-secondary-fixed": "#1f1635",
-                      "surface-container-lowest": "#0f0d13"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.125rem",
-                      "lg": "0.25rem",
-                      "xl": "0.5rem",
-                      "full": "0.75rem"
-              },
-              "spacing": {
-                      "base": "8px",
-                      "gutter": "24px",
-                      "container-max": "1280px",
-                      "margin-mobile": "16px",
-                      "margin-desktop": "40px"
-              },
-              "fontFamily": {
-                      "body-lg": ["Manrope"],
-                      "label-sm": ["JetBrains Mono"],
-                      "headline-md": ["Hanken Grotesk"],
-                      "body-md": ["Manrope"],
-                      "display-lg": ["Hanken Grotesk"]
-              }
-            },
-          }
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-secondary-container": "#bfb2da",
+          "surface-container-high": "#2b292f",
+          "inverse-surface": "#e6e0e9",
+          "primary-fixed-dim": "#cfbcff",
+          "on-tertiary": "#3e2e00",
+          "inverse-on-surface": "#322f35",
+          "error": "#ffb4ab",
+          "on-tertiary-container": "#503d00",
+          "on-background": "#e6e0e9",
+          "primary": "#cfbcff",
+          "surface-container-low": "#1d1b20",
+          "surface-dim": "#141218",
+          "outline-variant": "#494551",
+          "tertiary": "#e7c365",
+          "surface": "#141218",
+          "surface-bright": "#3b383e",
+          "inverse-primary": "#6750a4",
+          "background": "#141218",
+          "on-secondary": "#342b4b",
+          "primary-fixed": "#e9ddff",
+          "on-surface": "#e6e0e9",
+          "on-primary": "#381e72",
+          "surface-container-highest": "#36343a",
+          "secondary-container": "#4d4465",
+          "primary-container": "#6750a4",
+          "secondary-fixed": "#e9ddff",
+          "secondary-fixed-dim": "#cdc0e9",
+          "surface-variant": "#36343a",
+          "on-primary-container": "#e0d2ff",
+          "on-surface-variant": "#cbc4d2",
+          "tertiary-fixed-dim": "#e7c365",
+          "tertiary-container": "#c9a74d",
+          "on-error": "#690005",
+          "on-tertiary-fixed-variant": "#594400",
+          "on-primary-fixed": "#22005d",
+          "secondary": "#cdc0e9",
+          "surface-tint": "#cfbcff",
+          "on-error-container": "#ffdad6",
+          "tertiary-fixed": "#ffdf93",
+          "error-container": "#93000a",
+          "on-primary-fixed-variant": "#4f378a",
+          "on-secondary-fixed-variant": "#4b4263",
+          "on-tertiary-fixed": "#241a00",
+          "outline": "#948e9c",
+          "surface-container": "#211f24",
+          "on-secondary-fixed": "#1f1635",
+          "surface-container-lowest": "#0f0d13"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "base": "8px",
+          "gutter": "24px",
+          "container-max": "1280px",
+          "margin-mobile": "16px",
+          "margin-desktop": "40px"
+        },
+        "fontFamily": {
+          "body-lg": ["Manrope"],
+          "label-sm": ["JetBrains Mono"],
+          "headline-md": ["Hanken Grotesk"],
+          "body-md": ["Manrope"],
+          "display-lg": ["Hanken Grotesk"]
         }
-    </script>
-<style>.theatrical-glow {
-    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05)
+      }
     }
-.bg-login-hero {
+  }
+</script>
+<style>
+  .theatrical-glow {
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05)
+  }
+  .bg-login-hero {
     background-image: linear-gradient(to right, rgba(20, 18, 24, 1) 30%, rgba(20, 18, 24, 0.4) 100%), url(https://lh3.googleusercontent.com/aida-public/AB6AXuCpQyQxqGaorxic7hLTuuhjYW_502q2Ym4C_Q_BNu0FkFGUNKeQq2QHlbDdPslFj-KZM5nEIq6SGHx5tTWisT4O3pJfRfhPjbMWIqO945hpZaRksWVV0S6ZqeZxVxfLBHU2KfTrRzwpaGWn3UIWh4obdSP-KWImDbh9TIIhPgc1-P40m9dO0onHLiSbV9twYMt4I84yvJDwyTU7LFIDA9RZOGmC5B88ndOf2en0zfk11OSeRoCavLs4xdAu6pFB4WMW4tCpkRtvC7zN);
     background-size: cover;
     background-position: center
-    }
-.cream-input {
+  }
+  .cream-input {
     background-color: #1d1b20 !important;
     color: #ffdf93 !important;
     border-color: rgba(231, 195, 101, 0.2) !important
-    }
-.cream-input:focus {
+  }
+  .cream-input:focus {
     border-color: #e7c365 !important;
     box-shadow: 0 0 0 1px #e7c365
-    }</style>
+  }
+</style>
 </head>
 <body class="bg-surface text-on-surface font-body-md min-h-screen flex items-center justify-center selection:bg-tertiary selection:text-on-tertiary">
-<!-- Main Login Canvas -->
-<main class="relative w-full min-h-screen flex items-stretch">
-<!-- Background/Hero Side (Visible on Desktop) -->
-<div class="hidden lg:flex lg:w-3/5 bg-login-hero relative overflow-hidden flex-col justify-end p-margin-desktop" data-alt="A grand historical theater interior seen from the stage, featuring plush deep-red velvet seats and ornate golden architectural details on the balconies. The lighting is dramatic and warm, with soft spotlights creating a cinematic atmosphere. The overall style is prestigious and luxurious, dominated by deep shadows and rich golden highlights.">
-<div class="relative z-10 max-w-xl">
-<h2 class="font-display-lg text-display-lg text-tertiary leading-tight mb-4">
-                    Tradición que se vive en cada butaca.
-                </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant">
-                    Acceso exclusivo para personal de Punto de Venta. Gestione funciones, ventas y experiencias de clase mundial.
-                </p>
-</div>
-<!-- Subtle Overlay for depth -->
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
-</div>
-<!-- Login Form Side -->
-<div class="w-full lg:w-2/5 flex flex-col justify-center bg-surface-container-lowest p-margin-mobile md:p-gutter lg:p-12 relative z-20">
-<!-- Branding Header -->
-<div class="mb-12">
-<div class="flex items-center gap-3 mb-2">
-<span class="material-symbols-outlined text-tertiary text-4xl" data-icon="theater_comedy">theater_comedy</span>
-<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-tertiary">
-                        Eventual Teatro
-                    </h1>
-</div>
-<div class="flex items-center gap-2">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant bg-surface-container-highest px-3 py-1 rounded-full">
-                        Punto de Venta
-                    </span>
-<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
-</div>
-</div>
-<!-- Login Content -->
-<div class="w-full max-w-md mx-auto lg:mx-0">
-<div class="mb-8">
-<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Iniciar Sesión</h3>
-<p class="text-on-surface-variant font-body-md">Bienvenido, Vendedor. Ingrese sus credenciales para comenzar la jornada.</p>
-</div>
-<form class="space-y-6" id="loginForm" onsubmit="return false;">
-<!-- User Input -->
-<div class="space-y-2">
-<label class="font-label-sm text-label-sm text-tertiary flex items-center gap-2" for="username">
-<span class="material-symbols-outlined text-base" data-icon="person">person</span>
-                            Gmail
-                        </label>
-<input class="w-full h-14 rounded-xl px-4 font-body-md cream-input transition-all duration-200 outline-none" id="username" name="username" placeholder="vendedor@eventualteatro.com" required="" type="email">
-</div>
-<!-- Password Input -->
-<div class="space-y-2">
-<div class="flex justify-between items-center">
-<label class="font-label-sm text-label-sm text-tertiary flex items-center gap-2" for="password">
-<span class="material-symbols-outlined text-base" data-icon="lock">lock</span>
-                                CONTRASEÑA
-                            </label>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors" href="#" id="forgot-link">
-                                ¿Olvidó su clave?
-                            </a>
-</div>
-<div class="relative">
-<input class="w-full h-14 rounded-xl px-4 font-body-md cream-input transition-all duration-200 outline-none" id="password" name="password" placeholder="••••••••" required="" type="password">
-<button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-tertiary transition-colors" id="toggle-password" type="button">
-<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
-</button>
-</div>
-</div>
-<!-- Station Identification (Agile POS specific) -->
-<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/20 mb-4">
-<label class="font-label-sm text-label-sm text-on-surface-variant block mb-2" for="station">ESTACIÓN ASIGNADA</label>
-<select class="w-full bg-transparent border-none text-tertiary font-body-md focus:ring-0 cursor-pointer p-0" id="station">
-<option value="pos1">Taquilla Principal - 01</option>
-<option value="pos2">Taquilla Lateral - 02</option>
-<option value="pos3">Venta Corporativa - 03</option>
-</select>
-</div>
-<!-- Login Button -->
-<button class="w-full h-14 bg-tertiary hover:bg-tertiary-container active:scale-[0.98] transition-all duration-200 rounded-xl flex items-center justify-center gap-3 text-on-tertiary font-bold text-body-lg theatrical-glow" id="loginBtn" type="submit">
-<span class="material-symbols-outlined" data-icon="login">login</span>
-                        ACCEDER AL SISTEMA
-                    </button>
-</form>
-<!-- Helpful Footer Info -->
-<div class="mt-12 pt-8 border-t border-outline-variant/20 flex flex-col gap-4">
-<div class="flex items-center gap-4 text-on-surface-variant">
-<span class="material-symbols-outlined text-tertiary" data-icon="support_agent">support_agent</span>
-<p class="text-label-sm font-label-sm">
-                            ¿Problemas técnicos? <br>
-<span class="text-tertiary">Extension 550 - Soporte IT</span>
-</p>
-</div>
-<div class="flex items-center gap-4 text-on-surface-variant">
-<span class="material-symbols-outlined text-tertiary" data-icon="update">update</span>
-<p class="text-label-sm font-label-sm">
-                            Sincronización v2.4.1 <br>
-<span class="text-on-surface-variant/60">Actualizado hace 10 min</span>
-</p>
-</div>
-</div>
-</div>
-<!-- Mobile Footer Credit -->
-<div class="lg:hidden mt-auto pt-12 text-center">
-<p class="text-label-sm font-label-sm text-on-surface-variant/40">
-                    © 2024 Gran Teatro - Gestión de Ventas
-                </p>
-</div>
-</div>
-</main>
-<!-- Error Alert -->
-<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden max-w-sm w-full mx-4 rounded-xl border border-error/30 bg-surface-container px-5 py-4 text-error font-body-md text-sm text-center shadow-xl" id="login-error"></div>
 
-<!-- Modal: Forgot Password -->
+<main class="relative w-full min-h-screen flex items-center justify-center bg-login-hero">
+
+  <!-- Overlay oscuro sobre el hero -->
+  <div class="absolute inset-0 bg-surface/80 backdrop-blur-sm"></div>
+
+  <!-- Card del formulario -->
+  <div class="relative z-10 w-full max-w-md mx-auto p-6">
+    <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 p-8 shadow-2xl">
+
+      <!-- Branding -->
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="material-symbols-outlined text-tertiary text-4xl">theater_comedy</span>
+          <h1 class="font-headline-md text-headline-md font-bold tracking-tight text-tertiary">
+            Eventual Teatro
+          </h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant bg-surface-container-highest px-3 py-1 rounded-full">
+            Punto de Venta
+          </span>
+          <div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+        </div>
+      </div>
+
+      <!-- Título -->
+      <div class="mb-8">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Iniciar Sesión</h3>
+        <p class="text-on-surface-variant font-body-md text-sm">Bienvenido, Vendedor. Ingrese sus credenciales para comenzar la jornada.</p>
+      </div>
+
+      <form class="space-y-6" id="loginForm" onsubmit="return false;">
+        <!-- Email -->
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm text-tertiary flex items-center gap-2" for="username">
+            <span class="material-symbols-outlined text-base">person</span>
+            CORREO
+          </label>
+          <input class="w-full h-14 rounded-xl px-4 font-body-md cream-input transition-all duration-200 outline-none"
+            id="username" name="username" placeholder="vendedor@eventualteatro.com" required type="email">
+        </div>
+
+        <!-- Contraseña -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <label class="font-label-sm text-label-sm text-tertiary flex items-center gap-2" for="password">
+              <span class="material-symbols-outlined text-base">lock</span>
+              CONTRASEÑA
+            </label>
+            <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors" href="#" id="forgot-link">
+              ¿Olvidó su clave?
+            </a>
+          </div>
+          <div class="relative">
+            <input class="w-full h-14 rounded-xl px-4 font-body-md cream-input transition-all duration-200 outline-none"
+              id="password" name="password" placeholder="••••••••" required type="password">
+            <button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-tertiary transition-colors"
+              id="toggle-password" type="button">
+              <span class="material-symbols-outlined">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Estación -->
+        <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/20">
+          <label class="font-label-sm text-label-sm text-on-surface-variant block mb-2" for="station">ESTACIÓN ASIGNADA</label>
+          <select class="w-full bg-transparent border-none text-tertiary font-body-md focus:ring-0 cursor-pointer p-0" id="station">
+            <option value="pos1">Taquilla Principal - 01</option>
+            <option value="pos2">Taquilla Lateral - 02</option>
+            <option value="pos3">Venta Corporativa - 03</option>
+          </select>
+        </div>
+
+        <!-- Botón -->
+        <button class="w-full h-14 bg-tertiary hover:bg-tertiary-container active:scale-[0.98] transition-all duration-200 rounded-xl flex items-center justify-center gap-3 text-on-tertiary font-bold text-body-lg theatrical-glow"
+          id="loginBtn" type="submit">
+          <span class="material-symbols-outlined">login</span>
+          ACCEDER AL SISTEMA
+        </button>
+      </form>
+
+    </div>
+  </div>
+</main>
+
+<!-- Error toast -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden max-w-sm w-full mx-4 rounded-xl border border-error/30 bg-surface-container px-5 py-4 text-error font-body-md text-sm text-center shadow-xl"
+  id="login-error"></div>
+
+<!-- Modal: Olvidé contraseña -->
 <div class="fixed inset-0 z-[200] flex items-center justify-center hidden" id="modal-forgot">
   <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
   <div class="relative bg-surface-container w-full max-w-sm rounded-xl border border-outline-variant shadow-2xl p-8 mx-4">
@@ -221,13 +203,14 @@
     </button>
     <div class="flex items-center gap-2 mb-6">
       <span class="material-symbols-outlined text-tertiary">lock_reset</span>
-      <h3 class="font-headline-md text-on-surface text-xl">Recuperar Contrasena</h3>
+      <h3 class="font-headline-md text-on-surface text-xl">Recuperar Contraseña</h3>
     </div>
     <p class="text-on-surface-variant font-body-md text-sm mb-6">Ingresa tu correo y recibirás un enlace para restablecer tu contraseña.</p>
     <form class="space-y-4" id="forgot-password-form">
       <div>
-        <label class="font-label-sm text-label-sm text-tertiary uppercase block mb-2" for="forgot-email">Correo electronico</label>
-        <input class="w-full h-12 rounded-xl px-4 font-body-md cream-input transition-all outline-none" id="forgot-email" placeholder="vendedor@eventualteatro.com" required type="email">
+        <label class="font-label-sm text-label-sm text-tertiary uppercase block mb-2" for="forgot-email">Correo electrónico</label>
+        <input class="w-full h-12 rounded-xl px-4 font-body-md cream-input transition-all outline-none"
+          id="forgot-email" placeholder="vendedor@eventualteatro.com" required type="email">
       </div>
       <div class="hidden rounded-lg border border-tertiary/30 bg-tertiary/10 px-4 py-3 text-tertiary font-body-md text-sm text-center" id="forgot-success"></div>
       <button class="w-full h-12 bg-tertiary text-on-tertiary font-bold rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all" type="submit">
@@ -237,7 +220,6 @@
     </form>
   </div>
 </div>
-
 
 <script src="js/session.js"></script>
 <script src="js/auth.js"></script>
