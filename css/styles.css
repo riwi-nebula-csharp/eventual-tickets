@@ -1,0 +1,196 @@
+/* ─────────────────────────────────────────────
+   styles.css — Eventual Tickets · Punto de Venta
+   Estilos globales compartidos entre vistas
+   ───────────────────────────────────────────── */
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #141218; }
+::-webkit-scrollbar-thumb { background: #36343a; border-radius: 10px; }
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(33, 31, 36, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 142, 156, 0.1);
+}
+
+/* Stage curve */
+.stage-curve {
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(231, 195, 101, 0.15) 0%, transparent 100%);
+  border-top: 2px solid #e7c365;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Asientos ── */
+.seat {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px 6px 4px 4px;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.seat::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 2px;
+  right: 2px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 0 0 3px 3px;
+}
+
+.seat.available {
+  background-color: #e7c365;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(231, 195, 101, 0.2);
+}
+
+.seat.available:hover {
+  transform: translateY(-3px) scale(1.12);
+  box-shadow: 0 6px 16px rgba(231, 195, 101, 0.5);
+}
+
+.seat.selected {
+  background-color: #a78bfa !important;
+  box-shadow: 0 0 14px rgba(167, 139, 250, 0.7);
+  transform: scale(1.12) translateY(-2px);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.seat.unavailable {
+  background-color: #36343a !important;
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Inputs cream ── */
+.cream-input {
+  background-color: #1d1b20 !important;
+  color: #ffdf93 !important;
+  border: 1px solid rgba(231, 195, 101, 0.2) !important;
+}
+.cream-input:focus {
+  border-color: #e7c365 !important;
+  box-shadow: 0 0 0 1px #e7c365;
+  outline: none;
+}
+
+/* ── Stepper ── */
+.step-active {
+  background: #e7c365;
+  color: #3e2e00;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(231, 195, 101, 0.25);
+}
+
+.step-done {
+  background: rgba(231, 195, 101, 0.15);
+  color: #e7c365;
+  border: 1px solid rgba(231, 195, 101, 0.4);
+}
+
+.step-pending {
+  background: transparent;
+  color: #cbc4d2;
+  border: 1px solid #494551;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+  min-width: 320px;
+  max-width: 480px;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ── Performance card ── */
+.play-card {
+  transition: all 0.2s;
+}
+.play-card:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Animaciones ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+/* ── Filtro de fecha ── */
+.filter-chip {
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid #494551;
+  color: #cbc4d2;
+  background: transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.filter-chip:hover {
+  border-color: #e7c365;
+  color: #e7c365;
+}
+.filter-chip.active {
+  background: rgba(231, 195, 101, 0.15);
+  border-color: #e7c365;
+  color: #e7c365;
+}
+
+/* ── Modal overlay ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal-box {
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-overlay.open .modal-box {
+  transform: scale(1) translateY(0);
+}

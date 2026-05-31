@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventual Teatro · Punto de Venta</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: {
+        colors: {
+          "secondary":"#cdc0e9","secondary-container":"#4d4465","on-primary-fixed":"#22005d",
+          "background":"#141218","inverse-primary":"#6750a4","on-surface":"#e6e0e9",
+          "primary":"#cfbcff","surface-container-highest":"#36343a","on-tertiary-fixed-variant":"#594400",
+          "inverse-surface":"#e6e0e9","surface-bright":"#3b383e","tertiary":"#e7c365",
+          "surface-dim":"#141218","on-tertiary":"#3e2e00","error-container":"#93000a",
+          "surface-variant":"#36343a","inverse-on-surface":"#322f35","on-primary":"#381e72",
+          "outline":"#948e9c","on-tertiary-container":"#503d00","on-primary-fixed-variant":"#4f378a",
+          "on-secondary-fixed-variant":"#4b4263","on-primary-container":"#e0d2ff",
+          "tertiary-container":"#c9a74d","surface-container":"#211f24","primary-fixed-dim":"#cfbcff",
+          "on-secondary-container":"#bfb2da","on-error":"#690005","tertiary-fixed-dim":"#e7c365",
+          "outline-variant":"#494551","on-secondary-fixed":"#1f1635","on-surface-variant":"#cbc4d2",
+          "secondary-fixed":"#e9ddff","primary-fixed":"#e9ddff","surface-container-low":"#1d1b20",
+          "surface-container-lowest":"#0f0d13","on-error-container":"#ffdad6","on-secondary":"#342b4b",
+          "on-background":"#e6e0e9","surface-container-high":"#2b292f","surface":"#141218",
+          "surface-tint":"#cfbcff","secondary-fixed-dim":"#cdc0e9","on-tertiary-fixed":"#241a00",
+          "tertiary-fixed":"#ffdf93","primary-container":"#6750a4","error":"#ffb4ab"
+        },
+        borderRadius: { DEFAULT:"0.125rem", lg:"0.25rem", xl:"0.5rem", full:"0.75rem" },
+        fontFamily: {
+          "body-lg":["Manrope"],"headline-md":["Hanken Grotesk"],"body-md":["Manrope"],
+          "display-lg":["Hanken Grotesk"],"label-sm":["JetBrains Mono"]
+        },
+        fontSize: {
+          "body-lg":["18px",{"lineHeight":"28px"}],
+          "headline-md":["32px",{"lineHeight":"40px","fontWeight":"600"}],
+          "body-md":["16px",{"lineHeight":"24px"}],
+          "display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],
+          "label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}]
+        }
+      }}
+    }
+  </script>
+</head>
+
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+
+<!-- ═══════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════ -->
+<aside class="w-[260px] h-full fixed left-0 top-0 bg-surface-container-high border-r border-outline-variant flex flex-col p-5 z-50">
+  <div class="mb-8 px-1">
+    <div class="flex items-center gap-2.5 mb-1">
+      <span class="material-symbols-outlined text-tertiary text-3xl">theater_comedy</span>
+      <h1 class="font-headline-md text-[22px] font-bold text-tertiary leading-none">Eventual</h1>
+    </div>
+    <span class="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-full">Punto de Venta</span>
+  </div>
+
+  <nav class="flex-1 space-y-1">
+    <button class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-left" data-view="catalog">
+      <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+      <span class="text-sm font-medium">Catálogo y Venta</span>
+    </button>
+    <button class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-left text-on-surface-variant" data-view="historial">
+      <span class="material-symbols-outlined text-xl">receipt_long</span>
+      <span class="text-sm font-medium">Historial de Ventas</span>
+    </button>
+  </nav>
+
+  <div class="mt-auto pt-4 border-t border-outline-variant space-y-3">
+    <div class="flex items-center gap-3 px-2">
+      <div class="w-9 h-9 rounded-full bg-tertiary-container overflow-hidden flex items-center justify-center shrink-0" id="user-avatar-wrap">
+        <span class="material-symbols-outlined text-on-tertiary-container">person</span>
+      </div>
+      <div class="min-w-0">
+        <p class="text-sm font-bold text-on-surface truncate" id="user-name-display">—</p>
+        <p class="text-xs text-on-surface-variant truncate" id="user-email-display">—</p>
+      </div>
+    </div>
+    <a href="#" id="logout-btn"
+      class="w-full flex items-center gap-3 px-4 py-2.5 text-error hover:bg-error-container/10 rounded-xl transition-colors text-sm">
+      <span class="material-symbols-outlined text-xl">logout</span>
+      <span>Cerrar sesión</span>
+    </a>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════
+     MAIN
+═══════════════════════════════════════════ -->
+<main class="ml-[260px] h-screen flex flex-col overflow-hidden">
+
+  <header class="h-16 bg-surface border-b border-outline-variant px-8 flex justify-between items-center z-40 shrink-0">
+    <h2 class="font-bold text-on-surface text-lg" id="page-title">Catálogo y Venta</h2>
+    <div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant">
+      <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+      <span class="text-on-surface-variant text-xs font-medium" id="station-display">—</span>
+    </div>
+  </header>
+
+  <div class="flex-1 overflow-y-auto bg-surface-dim" id="content-area">
+
+    <!-- ══════════════════════════════
+         VIEW: CATÁLOGO
+    ══════════════════════════════ -->
+    <div class="app-view p-6" id="view-catalog">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <div class="relative flex-1 min-w-[200px] max-w-xs">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-base">search</span>
+          <input id="search-play" type="text" placeholder="Buscar obra..."
+            class="w-full bg-surface-container border border-outline-variant rounded-xl pl-9 pr-4 py-2.5 text-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none text-on-surface placeholder:text-on-surface-variant/50">
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs text-on-surface-variant font-label-sm mr-1">Filtrar:</span>
+          <button class="filter-chip active" data-filter="all">Todas</button>
+          <button class="filter-chip" data-filter="today">Hoy</button>
+          <button class="filter-chip" data-filter="week">Esta semana</button>
+          <button class="filter-chip" data-filter="month">Este mes</button>
+          <button class="filter-chip" data-filter="custom">Personalizado</button>
+        </div>
+      </div>
+
+      <div class="hidden mb-5 flex items-center gap-3 bg-surface-container p-3 rounded-xl border border-outline-variant" id="custom-date-box">
+        <span class="material-symbols-outlined text-tertiary text-sm">date_range</span>
+        <label class="text-xs text-on-surface-variant">Desde</label>
+        <input type="date" id="filter-date-from"
+          class="bg-surface-container-high border border-outline-variant rounded-lg px-3 py-1.5 text-sm text-on-surface focus:border-tertiary outline-none">
+        <label class="text-xs text-on-surface-variant">Hasta</label>
+        <input type="date" id="filter-date-to"
+          class="bg-surface-container-high border border-outline-variant rounded-lg px-3 py-1.5 text-sm text-on-surface focus:border-tertiary outline-none">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="plays-catalog"></div>
+    </div>
+
+    <!-- ══════════════════════════════
+         VIEW: HISTORIAL DE VENTAS
+    ══════════════════════════════ -->
+    <div class="app-view hidden p-6" id="view-historial">
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs text-on-surface-variant font-label-sm mr-1">Período:</span>
+          <button class="filter-chip active" data-hist-filter="today">Hoy</button>
+          <button class="filter-chip" data-hist-filter="week">Esta semana</button>
+          <button class="filter-chip" data-hist-filter="month">Este mes</button>
+          <button class="filter-chip" data-hist-filter="date">Fecha específica</button>
+        </div>
+        <button id="btn-refresh-historial"
+          class="ml-auto flex items-center gap-2 px-3 py-2 bg-surface-container border border-outline-variant rounded-xl text-xs text-on-surface-variant hover:text-tertiary hover:border-tertiary transition-all">
+          <span class="material-symbols-outlined text-sm">refresh</span>
+          Actualizar
+        </button>
+      </div>
+
+      <div class="hidden mb-5 flex items-center gap-3 bg-surface-container p-3 rounded-xl border border-outline-variant" id="hist-date-box">
+        <span class="material-symbols-outlined text-tertiary text-sm">calendar_today</span>
+        <label class="text-xs text-on-surface-variant">Fecha</label>
+        <input type="date" id="hist-date-input"
+          class="bg-surface-container-high border border-outline-variant rounded-lg px-3 py-1.5 text-sm text-on-surface focus:border-tertiary outline-none">
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mb-6" id="hist-summary-cards"></div>
+
+      <div class="bg-surface-container-high rounded-2xl border border-outline-variant overflow-hidden">
+        <div class="p-5 border-b border-outline-variant flex items-center justify-between">
+          <h3 class="font-bold text-on-surface text-base">Ventas registradas</h3>
+          <span class="text-xs text-on-surface-variant" id="hist-count-label">—</span>
+        </div>
+        <div id="hist-table-container"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         VIEW: SEAT MAP (interno, no nav)
+    ══════════════════════════════ -->
+    <div class="app-view hidden h-full" id="view-seat-map">
+      <div class="flex h-full">
+
+        <div class="flex-1 overflow-y-auto p-6" id="seat-map-area">
+          <button id="btn-back-catalog"
+            class="flex items-center gap-2 text-on-surface-variant hover:text-tertiary transition-colors text-sm mb-5">
+            <span class="material-symbols-outlined text-base">arrow_back</span>
+            Volver al catálogo
+          </button>
+          <div class="mb-6">
+            <h3 class="font-bold text-on-surface text-xl" id="seatmap-play-name">—</h3>
+            <div class="flex flex-wrap items-center gap-4 mt-1">
+              <span class="text-sm text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                <span id="seatmap-perf-date">—</span>
+              </span>
+              <span class="text-sm font-bold text-tertiary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">confirmation_number</span>
+                <span id="seatmap-price">—</span> / boleta
+              </span>
+              <span class="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full border border-outline-variant" id="seatmap-availability">—</span>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-high rounded-2xl border border-outline-variant p-6 max-w-2xl mx-auto">
+            <div class="stage-curve mb-6">
+              <span class="font-label-sm text-[9px] uppercase tracking-[0.3em] text-tertiary/50 mt-2">ESCENARIO</span>
+            </div>
+            <div class="space-y-2" id="seat-map-container">
+              <p class="text-center text-on-surface-variant py-16 text-sm italic">Selecciona una función para ver el mapa.</p>
+            </div>
+            <div class="flex justify-center gap-8 mt-5 pt-5 border-t border-outline-variant">
+              <div class="flex items-center gap-2"><div class="seat available w-5 h-5 rounded"></div><span class="text-[11px] text-on-surface-variant uppercase tracking-wide">Disponible</span></div>
+              <div class="flex items-center gap-2"><div class="seat selected w-5 h-5 rounded"></div><span class="text-[11px] text-on-surface-variant uppercase tracking-wide">Seleccionado</span></div>
+              <div class="flex items-center gap-2"><div class="seat unavailable w-5 h-5 rounded"></div><span class="text-[11px] text-on-surface-variant uppercase tracking-wide">Ocupado</span></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="w-72 shrink-0 border-l border-outline-variant bg-surface-container-high flex flex-col">
+          <div class="p-5 border-b border-outline-variant">
+            <h4 class="font-bold text-on-surface text-base">Resumen de Compra</h4>
+            <p class="text-xs text-on-surface-variant mt-0.5">
+              <span id="summary-count">0</span> asiento(s) seleccionado(s)
+            </p>
+          </div>
+          <div class="flex-1 overflow-y-auto p-5" id="summary-seats-list">
+            <p class="text-xs text-on-surface-variant italic text-center py-6">Selecciona asientos en el mapa</p>
+          </div>
+          <div class="p-5 border-t border-outline-variant space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-sm font-bold text-on-surface uppercase tracking-widest">Total</span>
+              <span class="text-xl font-bold text-tertiary" id="summary-total">$0</span>
+            </div>
+            <button id="btn-checkout"
+              class="w-full py-3.5 rounded-xl font-bold uppercase tracking-widest text-sm bg-outline-variant text-on-surface-variant cursor-not-allowed"
+              disabled>
+              Continuar con Pago
+            </button>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ═══════════════════════════════════════════
+     MODAL: CONFIRMAR COMPRA
+═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal-box bg-surface-container-high w-full max-w-md rounded-2xl border border-outline-variant shadow-2xl p-8 mx-4">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-full bg-tertiary/15 flex items-center justify-center">
+        <span class="material-symbols-outlined text-tertiary">receipt</span>
+      </div>
+      <h3 class="font-bold text-on-surface text-lg">Confirmar Venta</h3>
+    </div>
+
+    <div class="bg-surface-container rounded-xl p-5 space-y-3 mb-6">
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Obra</span>
+        <span class="text-on-surface font-bold" id="confirm-play-name">—</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Función</span>
+        <span class="text-on-surface" id="confirm-perf-date">—</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Asientos</span>
+        <span class="text-on-surface text-right max-w-[60%] leading-snug" id="confirm-seats">—</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Cantidad</span>
+        <span class="text-on-surface font-bold" id="confirm-count">—</span>
+      </div>
+      <div class="flex justify-between text-sm gap-3" id="confirm-client-row">
+        <span class="text-on-surface-variant">Cliente</span>
+        <span class="text-on-surface-variant italic">Sin cuenta registrada</span>
+      </div>
+      <div class="flex justify-between items-center border-t border-dashed border-outline-variant pt-3 mt-3">
+        <span class="font-bold text-on-surface uppercase tracking-widest text-sm">Total a cobrar</span>
+        <span class="text-2xl font-bold text-tertiary" id="confirm-total">$0</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 bg-tertiary/8 border border-tertiary/20 rounded-xl px-4 py-3 mb-6">
+      <span class="material-symbols-outlined text-tertiary text-base">payments</span>
+      <p class="text-xs text-on-surface-variant">Pago en <span class="text-tertiary font-bold">efectivo en taquilla</span>. Las boletas quedan registradas en la cuenta del cliente.</p>
+    </div>
+
+    <div class="flex gap-3">
+      <button id="btn-cancel-purchase"
+        class="flex-1 py-3 rounded-xl border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-colors font-bold text-sm">
+        Cancelar
+      </button>
+      <button id="btn-confirm-purchase"
+        class="flex-1 py-3 rounded-xl bg-tertiary text-on-tertiary font-bold text-sm flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all">
+        <span class="material-symbols-outlined text-base">check_circle</span>
+        CONFIRMAR VENTA
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="../js/session.js"></script>
+<script src="../js/toast.js"></script>
+<script src="../js/dashboard-session.js"></script>
+<script src="../js/plays.js"></script>
+<script src="../js/seatmap.js"></script>
+<script src="../js/historial.js"></script>
+<script src="../js/navigation.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    await initPlaysCatalog();
+    bindCatalogFilters();
+    initSeatMapListeners();
+    initHistorial();
+  });
+</script>
+
+</body>
+</html>
