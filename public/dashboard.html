@@ -1,255 +1,327 @@
-<!DOCTYPE html><html class="dark" lang="es"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Gran Teatro - Punto de Venta</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<script id="tailwind-config">
-tailwind.config = {
-    darkMode: "class",
-    theme: { extend: {
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventual Teatro · Punto de Venta</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;900&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: {
         colors: {
-            "secondary":"#cdc0e9","secondary-container":"#4d4465","on-primary-fixed":"#22005d",
-            "background":"#141218","inverse-primary":"#6750a4","on-surface":"#e6e0e9",
-            "primary":"#cfbcff","surface-container-highest":"#36343a","on-tertiary-fixed-variant":"#594400",
-            "inverse-surface":"#e6e0e9","surface-bright":"#3b383e","tertiary":"#e7c365",
-            "surface-dim":"#141218","on-tertiary":"#3e2e00","error-container":"#93000a",
-            "surface-variant":"#36343a","inverse-on-surface":"#322f35","on-primary":"#381e72",
-            "outline":"#948e9c","on-tertiary-container":"#503d00","on-primary-fixed-variant":"#4f378a",
-            "on-secondary-fixed-variant":"#4b4263","on-primary-container":"#e0d2ff",
-            "tertiary-container":"#c9a74d","surface-container":"#211f24","primary-fixed-dim":"#cfbcff",
-            "on-secondary-container":"#bfb2da","on-error":"#690005","tertiary-fixed-dim":"#e7c365",
-            "outline-variant":"#494551","on-secondary-fixed":"#1f1635","on-surface-variant":"#cbc4d2",
-            "secondary-fixed":"#e9ddff","primary-fixed":"#e9ddff","surface-container-low":"#1d1b20",
-            "surface-container-lowest":"#0f0d13","on-error-container":"#ffdad6","on-secondary":"#342b4b",
-            "on-background":"#e6e0e9","surface-container-high":"#2b292f","surface":"#141218",
-            "surface-tint":"#cfbcff","secondary-fixed-dim":"#cdc0e9","on-tertiary-fixed":"#241a00",
-            "tertiary-fixed":"#ffdf93","primary-container":"#6750a4","error":"#ffb4ab"
+          "secondary":"#cdc0e9","secondary-container":"#4d4465","on-primary-fixed":"#22005d",
+          "background":"#141218","inverse-primary":"#6750a4","on-surface":"#e6e0e9",
+          "primary":"#cfbcff","surface-container-highest":"#36343a","on-tertiary-fixed-variant":"#594400",
+          "inverse-surface":"#e6e0e9","surface-bright":"#3b383e","tertiary":"#e7c365",
+          "surface-dim":"#141218","on-tertiary":"#3e2e00","error-container":"#93000a",
+          "surface-variant":"#36343a","inverse-on-surface":"#322f35","on-primary":"#381e72",
+          "outline":"#948e9c","on-tertiary-container":"#503d00","on-primary-fixed-variant":"#4f378a",
+          "on-secondary-fixed-variant":"#4b4263","on-primary-container":"#e0d2ff",
+          "tertiary-container":"#c9a74d","surface-container":"#211f24","primary-fixed-dim":"#cfbcff",
+          "on-secondary-container":"#bfb2da","on-error":"#690005","tertiary-fixed-dim":"#e7c365",
+          "outline-variant":"#494551","on-secondary-fixed":"#1f1635","on-surface-variant":"#cbc4d2",
+          "secondary-fixed":"#e9ddff","primary-fixed":"#e9ddff","surface-container-low":"#1d1b20",
+          "surface-container-lowest":"#0f0d13","on-error-container":"#ffdad6","on-secondary":"#342b4b",
+          "on-background":"#e6e0e9","surface-container-high":"#2b292f","surface":"#141218",
+          "surface-tint":"#cfbcff","secondary-fixed-dim":"#cdc0e9","on-tertiary-fixed":"#241a00",
+          "tertiary-fixed":"#ffdf93","primary-container":"#6750a4","error":"#ffb4ab"
         },
         borderRadius: { DEFAULT:"0.125rem", lg:"0.25rem", xl:"0.5rem", full:"0.75rem" },
-        spacing: { base:"8px", gutter:"24px", "margin-mobile":"16px", "margin-desktop":"40px" },
-        fontFamily: { "body-lg":["Manrope"],"headline-md":["Hanken Grotesk"],"body-md":["Manrope"],"display-lg":["Hanken Grotesk"],"label-sm":["JetBrains Mono"] },
+        fontFamily: {
+          "body-lg":["Manrope"],"headline-md":["Hanken Grotesk"],"body-md":["Manrope"],
+          "display-lg":["Hanken Grotesk"],"label-sm":["JetBrains Mono"]
+        },
         fontSize: {
-            "body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],
-            "headline-md":["32px",{"lineHeight":"40px","fontWeight":"600"}],
-            "body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],
-            "display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],
-            "label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}]
+          "body-lg":["18px",{"lineHeight":"28px"}],
+          "headline-md":["32px",{"lineHeight":"40px","fontWeight":"600"}],
+          "body-md":["16px",{"lineHeight":"24px"}],
+          "display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],
+          "label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}]
         }
-    }}
-}
-</script>
-<style>
-    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align:middle; }
-    .glass-card { background:rgba(33,31,36,0.8); backdrop-filter:blur(12px); border:1px solid rgba(148,142,156,0.1); }
-    ::-webkit-scrollbar { width:6px; }
-    ::-webkit-scrollbar-track { background:#141218; }
-    ::-webkit-scrollbar-thumb { background:#36343a; border-radius:10px; }
-    .stage-curve { width:100%; height:40px; background:linear-gradient(180deg,rgba(231,195,101,0.15) 0%,transparent 100%); border-top:2px solid #e7c365; border-radius:50% 50% 0 0/100% 100% 0 0; margin-bottom:32px; }
-    .seat { width:24px; height:24px; border-radius:6px 6px 4px 4px; transition:all 0.2s cubic-bezier(0.4,0,0.2,1); position:relative; }
-    .seat::after { content:''; position:absolute; bottom:-2px; left:2px; right:2px; height:4px; background:rgba(0,0,0,0.2); border-radius:0 0 2px 2px; }
-    .seat.available  { background-color:#e7c365; cursor:pointer; }
-    .seat.selected   { background-color:#ef4444 !important; box-shadow:0 0 15px rgba(239,68,68,0.6); transform:scale(1.1) translateY(-2px); border:2px solid white; }
-    .seat.unavailable{ background-color:#36343a !important; opacity:0.3; cursor:not-allowed; }
-</style>
+      }}
+    }
+  </script>
 </head>
+
 <body class="bg-background text-on-background font-body-md overflow-hidden">
 
-<!-- SideNavBar -->
-<aside class="w-[280px] h-full fixed left-0 top-0 bg-surface-container-high border-r border-outline-variant shadow-sm flex flex-col gap-base p-margin-mobile z-50" id="sidebar">
-    <div class="mb-8 px-2">
-        <h1 class="font-display-lg text-[32px] font-bold text-tertiary flex items-center gap-2">
-            <span class="material-symbols-outlined text-4xl">theater_comedy</span>
-            <span>Gran Teatro</span>
-        </h1>
-        <p class="text-on-surface-variant text-label-sm uppercase tracking-widest mt-1">Panel de Vendedores</p>
+<!-- ═══════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════ -->
+<aside class="w-[260px] h-full fixed left-0 top-0 bg-surface-container-high border-r border-outline-variant flex flex-col p-5 z-50">
+  <div class="mb-8 px-1">
+    <div class="flex items-center gap-2.5 mb-1">
+      <span class="material-symbols-outlined text-tertiary text-3xl">theater_comedy</span>
+      <h1 class="font-headline-md text-[22px] font-bold text-tertiary leading-none">Eventual</h1>
     </div>
-    <nav class="flex-1 space-y-1">
-        <button class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-lg transition-transform active:scale-95 bg-tertiary-container text-on-tertiary-container font-bold" onclick="switchTab('nueva-venta')">
-            <span class="material-symbols-outlined">add_shopping_cart</span>
-            <span class="font-body-md">Nueva Venta</span>
-        </button>
-        <button class="nav-item w-full flex items-center gap-4 px-4 py-3 hover:text-on-surface hover:bg-surface-container-highest transition-colors duration-200 rounded-lg text-on-surface-variant" onclick="switchTab('funciones')">
-            <span class="material-symbols-outlined">calendar_month</span>
-            <span class="font-body-md">Funciones</span>
-        </button>
-        <button class="nav-item w-full flex items-center gap-4 px-4 py-3 hover:text-on-surface hover:bg-surface-container-highest transition-colors duration-200 rounded-lg text-on-surface-variant" onclick="switchTab('historial')">
-            <span class="material-symbols-outlined">history</span>
-            <span class="font-body-md">Historial</span>
-        </button>
-        <button class="nav-item w-full flex items-center gap-4 px-4 py-3 hover:text-on-surface hover:bg-surface-container-highest transition-colors duration-200 rounded-lg text-on-surface-variant" onclick="switchTab('configuracion')">
-            <span class="material-symbols-outlined">settings</span>
-            <span class="font-body-md">Configuración</span>
-        </button>
-    </nav>
-    <div class="mt-auto pt-4 border-t border-outline-variant">
-        <a href="#" id="logout-btn" class="w-full flex items-center gap-4 px-4 py-3 text-error hover:bg-error-container/10 transition-colors rounded-lg">
-            <span class="material-symbols-outlined">logout</span>
-            <span class="font-body-md">Cerrar sesión</span>
-        </a>
+    <span class="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-full">Punto de Venta</span>
+  </div>
+
+  <nav class="flex-1 space-y-1">
+    <button class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-left" data-view="catalog">
+      <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+      <span class="text-sm font-medium">Catálogo y Venta</span>
+    </button>
+    <button class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-left text-on-surface-variant" data-view="historial">
+      <span class="material-symbols-outlined text-xl">receipt_long</span>
+      <span class="text-sm font-medium">Historial de Ventas</span>
+    </button>
+  </nav>
+
+  <div class="mt-auto pt-4 border-t border-outline-variant space-y-3">
+    <div class="flex items-center gap-3 px-2">
+      <div class="w-9 h-9 rounded-full bg-tertiary-container overflow-hidden flex items-center justify-center shrink-0" id="user-avatar-wrap">
+        <span class="material-symbols-outlined text-on-tertiary-container">person</span>
+      </div>
+      <div class="min-w-0">
+        <p class="text-sm font-bold text-on-surface truncate" id="user-name-display">—</p>
+        <p class="text-xs text-on-surface-variant truncate" id="user-email-display">—</p>
+      </div>
     </div>
+    <a href="#" id="logout-btn"
+      class="w-full flex items-center gap-3 px-4 py-2.5 text-error hover:bg-error-container/10 rounded-xl transition-colors text-sm">
+      <span class="material-symbols-outlined text-xl">logout</span>
+      <span>Cerrar sesión</span>
+    </a>
+  </div>
 </aside>
 
-<!-- Main Content Area -->
-<main class="ml-[280px] h-screen flex flex-col overflow-hidden">
-    <!-- TopAppBar -->
-    <header class="h-20 bg-surface border-b border-outline-variant px-margin-desktop flex justify-between items-center z-40">
-        <div>
-            <h2 class="font-headline-md text-on-surface text-2xl" id="page-title">Punto de Venta</h2>
-            <p class="text-on-surface-variant text-sm" id="station-display">Cargando estación...</p>
-        </div>
-        <div class="flex items-center gap-6">
-            <div class="flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant">
-                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <span class="text-on-surface-variant text-sm font-medium">Sistema Operativo</span>
-            </div>
-            <div class="h-10 w-[1px] bg-outline-variant"></div>
-            <div class="flex items-center gap-3">
-                <div class="text-right">
-                    <p class="font-bold text-on-surface text-sm" id="user-name-display">—</p>
-                    <p class="text-on-surface-variant text-xs" id="user-email-display">—</p>
-                </div>
-                <div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container overflow-hidden" id="user-avatar-wrap">
-                    <span class="material-symbols-outlined">person</span>
-                </div>
-            </div>
-        </div>
-    </header>
+<!-- ═══════════════════════════════════════════
+     MAIN
+═══════════════════════════════════════════ -->
+<main class="ml-[260px] h-screen flex flex-col overflow-hidden">
 
-    <!-- Dynamic Content Canvas -->
-    <div class="flex-1 overflow-y-auto p-gutter bg-surface-dim flex flex-col" id="content-canvas">
-
-        <!-- SPA View: Nueva Venta -->
-        <div class="animate-in fade-in duration-500 flex-1" id="view-nueva-venta">
-            <!-- Stepper -->
-            <div class="flex justify-center mb-8">
-                <div class="flex items-center gap-4">
-                    <div class="flex items-center gap-2 px-6 py-2 rounded-full bg-tertiary text-on-tertiary font-bold shadow-lg shadow-tertiary/10">
-                        <span class="w-6 h-6 rounded-full bg-on-tertiary text-tertiary flex items-center justify-center text-xs">1</span>
-                        <span>Seleccionar función</span>
-                    </div>
-                    <div class="w-12 h-[2px] bg-outline-variant"></div>
-                    <div class="flex items-center gap-2 px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant">
-                        <span class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-xs">2</span>
-                        <span>Asientos</span>
-                    </div>
-                    <div class="w-12 h-[2px] bg-outline-variant"></div>
-                    <div class="flex items-center gap-2 px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant">
-                        <span class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-xs">3</span>
-                        <span>Pago</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Layout -->
-            <div class="grid grid-cols-12 gap-gutter">
-
-                <!-- Left: Function List -->
-                <div class="col-span-3 flex flex-col gap-4">
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-                        <input id="search-performance" class="w-full bg-surface-container border border-outline-variant rounded-lg pl-10 pr-4 py-3 focus:ring-tertiary focus:border-tertiary text-sm" placeholder="Buscar función..." type="text">
-                    </div>
-                    <div class="flex-1 space-y-3 overflow-y-auto max-h-[60vh]" id="performance-list">
-                        <!-- Llenado por main.js -->
-                    </div>
-                </div>
-
-                <!-- Center: Seat Map -->
-                <div class="col-span-6 bg-surface-container-high rounded-2xl p-8 border border-outline-variant flex flex-col items-center">
-                    <div class="text-center mb-2">
-                        <h3 class="font-headline-md text-xl uppercase tracking-widest text-on-surface" id="seat-map-title">Selecciona una función</h3>
-                        <p class="text-on-surface-variant text-sm" id="seat-map-subtitle">Elige una función de la lista para ver los asientos</p>
-                        <p class="text-xs text-tertiary mt-1 font-bold" id="seat-availability-info"></p>
-                    </div>
-                    <div class="stage-curve flex items-center justify-center mt-4">
-                        <span class="text-[10px] text-tertiary/60 tracking-[1em] font-bold uppercase mt-2">ESCENARIO</span>
-                    </div>
-                    <div class="w-full max-w-lg mx-auto space-y-4 overflow-y-auto max-h-[45vh]" id="seat-map-container">
-                        <p class="text-center text-on-surface-variant py-8 text-sm italic">Selecciona una función para ver el mapa de asientos.</p>
-                    </div>
-                    <!-- Legend -->
-                    <div class="flex flex-wrap justify-center gap-8 mt-6 text-xs font-medium border-t border-outline-variant pt-6 w-full">
-                        <div class="flex items-center gap-2"><div class="seat available w-4 h-4 rounded-sm"></div><span class="text-on-surface-variant uppercase tracking-tighter">Disponible</span></div>
-                        <div class="flex items-center gap-2"><div class="seat selected w-4 h-4 rounded-sm"></div><span class="text-on-surface-variant uppercase tracking-tighter">Seleccionado</span></div>
-                        <div class="flex items-center gap-2"><div class="seat unavailable w-4 h-4 rounded-sm"></div><span class="text-on-surface-variant uppercase tracking-tighter">No Disponible</span></div>
-                    </div>
-                </div>
-
-                <!-- Right: Summary -->
-                <div class="col-span-3 flex flex-col gap-gutter">
-                    <div class="bg-surface-container-high rounded-2xl border border-outline-variant overflow-hidden flex flex-col min-h-[400px]">
-                        <div class="p-6 border-b border-outline-variant">
-                            <h3 class="font-bold text-lg text-on-surface">Resumen de Compra</h3>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <div class="mb-6">
-                                <h4 class="font-bold text-sm text-tertiary" id="summary-play-name">—</h4>
-                                <p class="text-xs text-on-surface-variant" id="summary-play-date">Selecciona una función</p>
-                            </div>
-                            <div class="flex-1 space-y-4 overflow-y-auto pr-1" id="summary-items">
-                                <p class="text-sm text-on-surface-variant italic py-4 text-center">No hay asientos seleccionados</p>
-                            </div>
-                            <div class="pt-4 mt-4 border-t border-dashed border-outline-variant flex justify-between items-center">
-                                <span class="text-lg font-bold text-on-surface uppercase tracking-widest">Total</span>
-                                <span class="text-2xl font-bold text-tertiary" id="total-price">$0</span>
-                            </div>
-                        </div>
-                        <div class="p-6 pt-0">
-                            <button class="w-full bg-outline-variant text-on-surface-variant py-4 rounded-xl font-bold uppercase tracking-widest transition-all cursor-not-allowed" id="btn-checkout" disabled>
-                                Continuar con Pago
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Placeholder para otras vistas -->
-        <div class="hidden flex-1 flex flex-col items-center justify-center gap-4 text-center" id="view-placeholder">
-            <span class="material-symbols-outlined text-5xl text-on-surface-variant" id="placeholder-icon">construction</span>
-            <h3 class="font-headline-md text-xl text-on-surface" id="placeholder-title">Sección en construcción</h3>
-            <p class="text-on-surface-variant text-sm">Esta sección estará disponible próximamente.</p>
-        </div>
+  <header class="h-16 bg-surface border-b border-outline-variant px-8 flex justify-between items-center z-40 shrink-0">
+    <h2 class="font-bold text-on-surface text-lg" id="page-title">Catálogo y Venta</h2>
+    <div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant">
+      <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+      <span class="text-on-surface-variant text-xs font-medium" id="station-display">—</span>
     </div>
+  </header>
+
+  <div class="flex-1 overflow-y-auto bg-surface-dim" id="content-area">
+
+    <!-- ══════════════════════════════
+         VIEW: CATÁLOGO
+    ══════════════════════════════ -->
+    <div class="app-view p-6" id="view-catalog">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <div class="relative flex-1 min-w-[200px] max-w-xs">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-base">search</span>
+          <input id="search-play" type="text" placeholder="Buscar obra..."
+            class="w-full bg-surface-container border border-outline-variant rounded-xl pl-9 pr-4 py-2.5 text-sm focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none text-on-surface placeholder:text-on-surface-variant/50">
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs text-on-surface-variant font-label-sm mr-1">Filtrar:</span>
+          <button class="filter-chip active" data-filter="all">Todas</button>
+          <button class="filter-chip" data-filter="today">Hoy</button>
+          <button class="filter-chip" data-filter="week">Esta semana</button>
+          <button class="filter-chip" data-filter="month">Este mes</button>
+          <button class="filter-chip" data-filter="custom">Personalizado</button>
+        </div>
+      </div>
+
+      <div class="hidden mb-5 flex items-center gap-3 bg-surface-container p-3 rounded-xl border border-outline-variant" id="custom-date-box">
+        <span class="material-symbols-outlined text-tertiary text-sm">date_range</span>
+        <label class="text-xs text-on-surface-variant">Desde</label>
+        <input type="date" id="filter-date-from"
+          class="bg-surface-container-high border border-outline-variant rounded-lg px-3 py-1.5 text-sm text-on-surface focus:border-tertiary outline-none">
+        <label class="text-xs text-on-surface-variant">Hasta</label>
+        <input type="date" id="filter-date-to"
+          class="bg-surface-container-high border border-outline-variant rounded-lg px-3 py-1.5 text-sm text-on-surface focus:border-tertiary outline-none">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="plays-catalog"></div>
+    </div>
+
+    <!-- ══════════════════════════════
+         VIEW: HISTORIAL DE VENTAS
+    ══════════════════════════════ -->
+    <div class="app-view hidden p-6" id="view-historial">
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs text-on-surface-variant font-label-sm mr-1">Período:</span>
+          <button class="filter-chip active" data-hist-filter="today">Hoy</button>
+          <button class="filter-chip" data-hist-filter="week">Esta semana</button>
+          <button class="filter-chip" data-hist-filter="month">Este mes</button>
+          <button class="filter-chip" data-hist-filter="date">Fecha específica</button>
+        </div>
+        <button id="btn-refresh-historial"
+          class="ml-auto flex items-center gap-2 px-3 py-2 bg-surface-container border border-outline-variant rounded-xl text-xs text-on-surface-variant hover:text-tertiary hover:border-tertiary transition-all">
+          <span class="material-symbols-outlined text-sm">refresh</span>
+          Actualizar
+        </button>
+      </div>
+
+      <div class="hidden mb-5 flex items-center gap-3 bg-surface-container p-3 rounded-xl border border-outline-variant" id="hist-date-box">
+        <span class="material-symbols-outlined text-tertiary text-sm">calendar_today</span>
+        <label class="text-xs text-on-surface-variant">Fecha</label>
+        <input type="date" id="hist-date-input"
+          class="bg-surface-container-high border border-outline-variant rounded-lg px-3 py-1.5 text-sm text-on-surface focus:border-tertiary outline-none">
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mb-6" id="hist-summary-cards"></div>
+
+      <div class="bg-surface-container-high rounded-2xl border border-outline-variant overflow-hidden">
+        <div class="p-5 border-b border-outline-variant flex items-center justify-between">
+          <h3 class="font-bold text-on-surface text-base">Ventas registradas</h3>
+          <span class="text-xs text-on-surface-variant" id="hist-count-label">—</span>
+        </div>
+        <div id="hist-table-container"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         VIEW: SEAT MAP (interno, no nav)
+    ══════════════════════════════ -->
+    <div class="app-view hidden h-full" id="view-seat-map">
+      <div class="flex h-full">
+
+        <div class="flex-1 overflow-y-auto p-6" id="seat-map-area">
+          <button id="btn-back-catalog"
+            class="flex items-center gap-2 text-on-surface-variant hover:text-tertiary transition-colors text-sm mb-5">
+            <span class="material-symbols-outlined text-base">arrow_back</span>
+            Volver al catálogo
+          </button>
+          <div class="mb-6">
+            <h3 class="font-bold text-on-surface text-xl" id="seatmap-play-name">—</h3>
+            <div class="flex flex-wrap items-center gap-4 mt-1">
+              <span class="text-sm text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                <span id="seatmap-perf-date">—</span>
+              </span>
+              <span class="text-sm font-bold text-tertiary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">confirmation_number</span>
+                <span id="seatmap-price">—</span> / boleta
+              </span>
+              <span class="text-xs text-on-surface-variant bg-surface-container px-3 py-1 rounded-full border border-outline-variant" id="seatmap-availability">—</span>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-high rounded-2xl border border-outline-variant p-6 max-w-2xl mx-auto">
+            <div class="stage-curve mb-6">
+              <span class="font-label-sm text-[9px] uppercase tracking-[0.3em] text-tertiary/50 mt-2">ESCENARIO</span>
+            </div>
+            <div class="space-y-2" id="seat-map-container">
+              <p class="text-center text-on-surface-variant py-16 text-sm italic">Selecciona una función para ver el mapa.</p>
+            </div>
+            <div class="flex justify-center gap-8 mt-5 pt-5 border-t border-outline-variant">
+              <div class="flex items-center gap-2"><div class="seat available w-5 h-5 rounded"></div><span class="text-[11px] text-on-surface-variant uppercase tracking-wide">Disponible</span></div>
+              <div class="flex items-center gap-2"><div class="seat selected w-5 h-5 rounded"></div><span class="text-[11px] text-on-surface-variant uppercase tracking-wide">Seleccionado</span></div>
+              <div class="flex items-center gap-2"><div class="seat unavailable w-5 h-5 rounded"></div><span class="text-[11px] text-on-surface-variant uppercase tracking-wide">Ocupado</span></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="w-72 shrink-0 border-l border-outline-variant bg-surface-container-high flex flex-col">
+          <div class="p-5 border-b border-outline-variant">
+            <h4 class="font-bold text-on-surface text-base">Resumen de Compra</h4>
+            <p class="text-xs text-on-surface-variant mt-0.5">
+              <span id="summary-count">0</span> asiento(s) seleccionado(s)
+            </p>
+          </div>
+          <div class="flex-1 overflow-y-auto p-5" id="summary-seats-list">
+            <p class="text-xs text-on-surface-variant italic text-center py-6">Selecciona asientos en el mapa</p>
+          </div>
+          <div class="p-5 border-t border-outline-variant space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-sm font-bold text-on-surface uppercase tracking-widest">Total</span>
+              <span class="text-xl font-bold text-tertiary" id="summary-total">$0</span>
+            </div>
+            <button id="btn-checkout"
+              class="w-full py-3.5 rounded-xl font-bold uppercase tracking-widest text-sm bg-outline-variant text-on-surface-variant cursor-not-allowed"
+              disabled>
+              Continuar con Pago
+            </button>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+  </div>
 </main>
 
+<!-- ═══════════════════════════════════════════
+     MODAL: CONFIRMAR COMPRA
+═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal-box bg-surface-container-high w-full max-w-md rounded-2xl border border-outline-variant shadow-2xl p-8 mx-4">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-full bg-tertiary/15 flex items-center justify-center">
+        <span class="material-symbols-outlined text-tertiary">receipt</span>
+      </div>
+      <h3 class="font-bold text-on-surface text-lg">Confirmar Venta</h3>
+    </div>
+
+    <div class="bg-surface-container rounded-xl p-5 space-y-3 mb-6">
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Obra</span>
+        <span class="text-on-surface font-bold" id="confirm-play-name">—</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Función</span>
+        <span class="text-on-surface" id="confirm-perf-date">—</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Asientos</span>
+        <span class="text-on-surface text-right max-w-[60%] leading-snug" id="confirm-seats">—</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Cantidad</span>
+        <span class="text-on-surface font-bold" id="confirm-count">—</span>
+      </div>
+      <div class="flex justify-between text-sm gap-3" id="confirm-client-row">
+        <span class="text-on-surface-variant">Cliente</span>
+        <span class="text-on-surface-variant italic">Sin cuenta registrada</span>
+      </div>
+      <div class="flex justify-between items-center border-t border-dashed border-outline-variant pt-3 mt-3">
+        <span class="font-bold text-on-surface uppercase tracking-widest text-sm">Total a cobrar</span>
+        <span class="text-2xl font-bold text-tertiary" id="confirm-total">$0</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 bg-tertiary/8 border border-tertiary/20 rounded-xl px-4 py-3 mb-6">
+      <span class="material-symbols-outlined text-tertiary text-base">payments</span>
+      <p class="text-xs text-on-surface-variant">Pago en <span class="text-tertiary font-bold">efectivo en taquilla</span>. Las boletas quedan registradas en la cuenta del cliente.</p>
+    </div>
+
+    <div class="flex gap-3">
+      <button id="btn-cancel-purchase"
+        class="flex-1 py-3 rounded-xl border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-colors font-bold text-sm">
+        Cancelar
+      </button>
+      <button id="btn-confirm-purchase"
+        class="flex-1 py-3 rounded-xl bg-tertiary text-on-tertiary font-bold text-sm flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all">
+        <span class="material-symbols-outlined text-base">check_circle</span>
+        CONFIRMAR VENTA
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="../js/session.js"></script>
+<script src="../js/toast.js"></script>
+<script src="../js/dashboard-session.js"></script>
+<script src="../js/plays.js"></script>
+<script src="../js/seatmap.js"></script>
+<script src="../js/historial.js"></script>
+<script src="../js/navigation.js"></script>
+
 <script>
-    function switchTab(viewId) {
-        const placeholder = document.getElementById('view-placeholder');
-        const activeView  = document.getElementById('view-nueva-venta');
-        const title       = document.getElementById('page-title');
-
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('bg-tertiary-container','text-on-tertiary-container','font-bold');
-            item.classList.add('text-on-surface-variant');
-        });
-        event.currentTarget.classList.add('bg-tertiary-container','text-on-tertiary-container','font-bold');
-        event.currentTarget.classList.remove('text-on-surface-variant');
-
-        if (viewId === 'nueva-venta') {
-            activeView.classList.remove('hidden');
-            placeholder.classList.add('hidden');
-            title.innerText = 'Punto de Venta';
-        } else {
-            activeView.classList.add('hidden');
-            placeholder.classList.remove('hidden');
-            const labels = {
-                'funciones':     { title:'Gestión de Funciones',        icon:'calendar_month' },
-                'entradas':      { title:'Control de Entradas',         icon:'confirmation_number' },
-                'clientes':      { title:'Base de Datos de Clientes',   icon:'group' },
-                'ventas':        { title:'Reportes de Ventas',          icon:'payments' },
-                'historial':     { title:'Historial de Operaciones',    icon:'history' },
-                'configuracion': { title:'Configuración del Sistema',   icon:'settings' }
-            };
-            document.getElementById('placeholder-title').innerText = labels[viewId].title;
-            document.getElementById('placeholder-icon').innerText  = labels[viewId].icon;
-            title.innerText = labels[viewId].title;
-        }
-    }
+  document.addEventListener('DOMContentLoaded', async () => {
+    await initPlaysCatalog();
+    bindCatalogFilters();
+    initSeatMapListeners();
+    initHistorial();
+  });
 </script>
 
-<script src="../js/dashboard.js"></script>
-<script src="../js/main.js"></script>
-</body></html>
+</body>
+</html>
