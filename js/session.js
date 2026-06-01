@@ -3,7 +3,7 @@
 //  Helpers de sesión compartidos por todas las vistas
 // ─────────────────────────────────────────────
 
-const AUTH_BASE_URL   = 'https://service.auth.nebula.andrescortes.dev';
+const AUTH_BASE_URL   = 'http://127.0.0.1:8000';
 const EVENTS_BASE_URL = 'https://service.events.nebula.andrescortes.dev';
 
 const STORAGE_KEYS = {

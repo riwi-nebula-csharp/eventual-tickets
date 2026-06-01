@@ -536,225 +536,28 @@ function printTickets() {
     return;
   }
 
-  const pricePerTicket = formatCurrency(purchase.totalPrice / purchase.ticketCount);
+  showToast('Enviando a impresora...', 'info', 3000);
 
-  const ticketsHtml = tickets.map((t, i) => `
-    <div class="ticket${i < tickets.length - 1 ? ' ticket-cut' : ''}">
-
-      <div class="t-header">
-        <p class="t-theater">&#127914; EVENTUAL TEATRO</p>
-        <p class="t-sub">TAQUILLA &bull; BOLETA #${t.id || (i + 1)}</p>
-      </div>
-
-      <div class="t-qr-wrap">
-        <img src="${t.qrUrl}" alt="QR" class="t-qr">
-        <p class="t-qr-hint">&#9654; PRESENTAR EN PUERTA &#9664;</p>
-      </div>
-
-      <div class="t-dash"></div>
-
-      <div class="t-body">
-        <p class="t-play">${t.playName.toUpperCase()}</p>
-
-        <div class="t-row">
-          <span class="t-lbl">FECHA</span>
-          <span class="t-val">${formatDate(t.performanceDate)}</span>
-        </div>
-        <div class="t-row">
-          <span class="t-lbl">HORA</span>
-          <span class="t-val">${formatTime(t.startTime)} &ndash; ${formatTime(t.endTime || purchase.endTime || '')}</span>
-        </div>
-
-        <div class="t-seat-box">
-          <span class="t-seat-lbl">ASIENTO</span>
-          <span class="t-seat-val">FILA ${t.rowName} &bull; N&deg; ${t.seatNumber}</span>
-        </div>
-
-        <div class="t-row">
-          <span class="t-lbl">PRECIO</span>
-          <span class="t-val t-price">${pricePerTicket}</span>
-        </div>
-        <div class="t-row">
-          <span class="t-lbl">PAGO</span>
-          <span class="t-val">EFECTIVO</span>
-        </div>
-        ${client?.name ? `
-        <div class="t-row">
-          <span class="t-lbl">CLIENTE</span>
-          <span class="t-val">${client.name.toUpperCase()}</span>
-        </div>` : ''}
-        ${client?.email ? `
-        <div class="t-row">
-          <span class="t-lbl">EMAIL</span>
-          <span class="t-val t-email">${client.email}</span>
-        </div>` : ''}
-      </div>
-
-      <div class="t-dash"></div>
-
-      <div class="t-footer">
-        <p>COMPRA #${purchase.id}</p>
-        <p>${new Date().toLocaleString('es-CO', { dateStyle: 'short', timeStyle: 'short' })}</p>
-        <div class="t-dash-light"></div>
-        <p>VALIDA PARA UNA PERSONA</p>
-        <p>NO REEMBOLSABLE</p>
-        <div class="t-dash-light"></div>
-        <p class="t-uuid">${t.qrUuid}</p>
-      </div>
-
-    </div>`).join('');
-
-  const printWin = window.open('', '_blank', 'width=300,height=800');
-
-  printWin.document.write(`<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <title>Boletas</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Courier New', Courier, monospace;
-      background: #fff;
-      color: #000;
-      width: 48mm;
-      margin: 0 auto;
-      padding: 2mm 0;
+  fetch('http://localhost:6789', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      tickets:  tickets,
+      purchase: purchase,
+      client:   client || {},
+    }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) {
+      showToast('✅ ' + data.message, 'success');
+    } else {
+      showToast('Error al imprimir: ' + data.message, 'error', 7000);
     }
-
-    /* ── Boleta ── */
-    .ticket { width: 100%; }
-    .ticket-cut {
-      border-bottom: 1.5px dashed #aaa;
-      margin-bottom: 5mm;
-      padding-bottom: 5mm;
-    }
-
-    /* Cabecera */
-    .t-header {
-      text-align: center;
-      padding: 3mm 0 2mm;
-      border-bottom: 2px solid #000;
-      margin-bottom: 3mm;
-    }
-    .t-theater {
-      font-size: 9.5pt;
-      font-weight: bold;
-      letter-spacing: 0.05em;
-    }
-    .t-sub {
-      font-size: 6.5pt;
-      color: #555;
-      margin-top: 1mm;
-      letter-spacing: 0.08em;
-    }
-
-    /* QR */
-    .t-qr-wrap {
-      text-align: center;
-      padding: 3mm 0;
-    }
-    .t-qr {
-      width: 38mm;
-      height: 38mm;
-      display: block;
-      margin: 0 auto 2mm;
-      image-rendering: pixelated;
-    }
-    .t-qr-hint {
-      font-size: 6.5pt;
-      letter-spacing: 0.06em;
-      color: #333;
-    }
-
-    /* Separadores */
-    .t-dash       { border-top: 1px dashed #888; margin: 2.5mm 0; }
-    .t-dash-light { border-top: 1px dotted #ccc; margin: 1.5mm 0; }
-
-    /* Cuerpo */
-    .t-body { padding: 0 1mm; }
-
-    .t-play {
-      font-size: 11pt;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 3.5mm;
-      line-height: 1.25;
-      letter-spacing: 0.02em;
-    }
-
-    .t-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1.8mm;
-      gap: 1mm;
-    }
-    .t-lbl {
-      font-size: 6pt;
-      color: #666;
-      letter-spacing: 0.12em;
-      flex-shrink: 0;
-    }
-    .t-val {
-      font-size: 8pt;
-      font-weight: bold;
-      text-align: right;
-      line-height: 1.3;
-    }
-    .t-price { font-size: 9.5pt; }
-    .t-email { font-size: 6.5pt; font-weight: normal; word-break: break-all; }
-
-    /* Asiento destacado — lo más visible */
-    .t-seat-box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 2px solid #000;
-      padding: 2mm 2.5mm;
-      margin: 3mm 0;
-    }
-    .t-seat-lbl {
-      font-size: 6pt;
-      color: #444;
-      letter-spacing: 0.12em;
-    }
-    .t-seat-val {
-      font-size: 11pt;
-      font-weight: bold;
-      letter-spacing: 0.02em;
-    }
-
-    /* Footer */
-    .t-footer {
-      text-align: center;
-      font-size: 6.5pt;
-      color: #666;
-      line-height: 2;
-      padding-bottom: 3mm;
-    }
-    .t-uuid {
-      font-size: 5pt;
-      color: #bbb;
-      word-break: break-all;
-      line-height: 1.5;
-      margin-top: 1mm;
-    }
-
-    @media print {
-      body { width: 48mm; margin: 0; padding: 0; }
-      @page { size: 58mm auto; margin: 2mm 5mm; }
-    }
-  </style>
-</head>
-<body>
-  ${ticketsHtml}
-  <script>window.onload = () => { window.print(); };<\/script>
-</body>
-</html>`);
-
-  printWin.document.close();
+  })
+  .catch(() => {
+    showToast('No se pudo conectar con el servidor de impresión. ¿Está corriendo printer-server.js?', 'error', 8000);
+  });
 }
 
 // ── Init listeners ─────────────────────────────
